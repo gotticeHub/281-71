@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Submit Opposition Letter</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #f7f7f7;
+  margin: 0;
+  padding: 20px;
+}
+.container {
+  max-width: 500px;
+  margin: auto;
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+h2 {
+  margin-top: 0;
+}
+input, textarea {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+button {
+  width: 100%;
+  padding: 14px;
+  background: #2c3e50;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+}
+button:hover {
+  background: #1a252f;
+}
+.small {
+  font-size: 12px;
+  color: #666;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Send Your Opposition Letter</h2>
+  <p>Fill out your information below, then tap the button to open your email.</p>
+
+  <input type="text" id="name" placeholder="Your Name" required>
+  <input type="text" id="address" placeholder="Your Address" required>
+  <input type="email" id="email" placeholder="Your Email" required>
+
+  <button onclick="generateEmail()">Open Email</button>
+
+  <p class="small">This will open your email app with a prewritten message you can review and send.</p>
+</div>
+
+<script>
+function generateEmail() {
+  var name = document.getElementById("name").value;
+  var address = document.getElementById("address").value;
+  var email = document.getElementById("email").value;
+
+  var subject = encodeURIComponent("Letter in Opposition to Current TxDOT Proposal of US 281 at SH 71 Interchange");
+
+  var body = `To the Texas Department of Transportation, Contractors, and Stakeholders associated with the US 281 at SH71 Interchange Project,
+
+My name is ${name} and I strongly oppose the proposed redesign of the US281 at SH71 Interchange in its current form.
+
+- I insist that all work and spending related to the current design cease until a Relief Route Feasibility Study has been completed, consistent with the City of Marble Falls 2024 Comprehensive Plan, which calls for shifting through-truck traffic east of the city limits.
+
+- I oppose the reliance on a desktop-only noise study, which does not accurately reflect real-world conditions. Additionally, the proposed sound wall for Gregg Ranch is incomplete. I request that a comprehensive, in-person field noise study be conducted. Based on those findings, the sound wall design should be expanded in both length and height, and construction of the sound wall should be completed prior to the start of any roadway work.
+
+- I further request that no shared-use bicycle or pedestrian lanes be included along US 281.
+
+- I also oppose the use of the proposed "turbine" interchange design, which remains unproven in a rural community such as ours. The only completed example of this design in Texas serves interstate-level traffic in Amarillo, a metropolitan area 19 times larger than Marble Falls. This raises serious concerns about its suitability for our region.
+
+- I request a project design that can be constructed in phases and that maintains access for residents south of the interchange traveling to Baylor Scott & White Hospital, the City of Marble Falls, and eastbound SH 71 toward Austin.
+
+- I also oppose the currently proposed traffic plan for the area south of the interchange. The inclusion of three traffic signals and right-turn-only exits for Gregg Ranch residents presents serious safety concerns. As designed, residents would be required to turn south on US 281, immediately cross multiple lanes of traffic, and make a U-turn to travel north—an unnecessarily hazardous maneuver.
+
+Finally, I am concerned that TxDOT has not provided clear explanations for the project’s budget increase from $225 million in 2024 to $243 million currently, nor for the delay in the environmental assessment timeline from 2025 to 2026. As a concerned local resident, I respectfully request transparency and responsiveness to community input as this project moves forward.
+
+Thank you for taking our community’s concerns into consideration.
+
+Signed,
+${name}
+${address}
+${email}`;
+
+  var mailtoLink = "mailto:US281SH71Interchange@gmail.com?subject=" + subject + "&body=" + encodeURIComponent(body);
+
+  window.location.href = mailtoLink;
+}
+</script>
+
+</body>
+</html>
