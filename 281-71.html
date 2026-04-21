@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Submit Opposition Letter</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: auto;
+      background: white;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      font-size: 22px;
+      margin-bottom: 15px;
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 15px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+
+    textarea {
+      height: 200px;
+      resize: vertical;
+    }
+
+    .buttons {
+      margin-top: 20px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      flex: 1;
+      padding: 12px;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .email-btn {
+      background-color: #007bff;
+      color: white;
+    }
+
+    .copy-btn {
+      background-color: #28a745;
+      color: white;
+    }
+
+    .note {
+      margin-top: 15px;
+      font-size: 13px;
+      color: #555;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Send Your Opposition Letter</h1>
+
+    <label>Your Name</label>
+    <input id="name" placeholder="Enter your name"/>
+
+    <label>Your Address</label>
+    <input id="address" placeholder="Enter your address"/>
+
+    <label>Your Email</label>
+    <input id="email" placeholder="Enter your email"/>
+
+    <label>Message Preview (editable)</label>
+    <textarea id="message"></textarea>
+
+    <div class="buttons">
+      <button class="email-btn" onclick="openEmail()">Open Email App</button>
+      <button class="copy-btn" onclick="copyText()">Copy Message Instead</button>
+    </div>
+
+    <div class="note">
+      If your device doesn’t support email apps, use "Copy Message Instead" and paste it into your email manually.
+    </div>
+  </div>
+
+  <script>
+    const baseMessage = `To the Texas Department of Transportation, Contractors, and Stakeholders associated with the US 281 at SH71 Interchange Project,
+
+My name is [NAME] and I strongly oppose to the proposed redesign of the US281 at SH71 Interchange in its current form.
+
+- I insist that all work and spending related to the current design cease until a Relief Route Feasibility Study has been completed, consistent with the City of Marble Falls 2024 Comprehensive Plan.
+
+- I oppose the reliance on a desktop-only noise study and request a comprehensive, in-person field study.
+
+- I request no shared-use bicycle or pedestrian lanes along US 281.
+
+- I oppose the proposed “turbine” interchange design as unsuitable for a rural community.
+
+- I request a phased project design maintaining access to Baylor Scott & White Hospital, Marble Falls, and SH 71 toward Austin.
+
+- I oppose the traffic plan south of the interchange due to safety concerns for Gregg Ranch residents.
+
+Finally, I request transparency regarding the project’s rising budget and delays.
+
+Signed,
+[NAME]
+[ADDRESS]
+[EMAIL]`;
+
+    const messageBox = document.getElementById("message");
+
+    function updateMessage() {
+      let name = document.getElementById("name").value || "[Your Name]";
+      let address = document.getElementById("address").value || "[Your Address]";
+      let email = document.getElementById("email").value || "[Your Email]";
+
+      let msg = baseMessage
+        .replaceAll("[NAME]", name)
+        .replace("[ADDRESS]", address)
+        .replace("[EMAIL]", email);
+
+      messageBox.value = msg;
+    }
+
+    document.querySelectorAll("input").forEach(input => {
+      input.addEventListener("input", updateMessage);
+    });
+
+    function openEmail() {
+      const subject = encodeURIComponent("Letter in Opposition to Current TxDOT Proposal of US 281 at SH 71 Interchange");
+      const body = encodeURIComponent(messageBox.value);
+
+      window.location.href = `mailto:US281SH71Interchange@gmail.com?subject=${subject}&body=${body}`;
+    }
+
+    function copyText() {
+      navigator.clipboard.writeText(messageBox.value);
+      alert("Message copied to clipboard!");
+    }
+
+    // Initialize
+    updateMessage();
+  </script>
+</body>
+</html>
